@@ -3,24 +3,53 @@ import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BsThreeDotsVertical, BsFillPencilFill, BsXLg } from "react-icons/bs";
 import Spinner from 'react-bootstrap/Spinner';
-
-
 import Dropdown from 'react-bootstrap/Dropdown';
 
+export interface User {
+  id: number
+  email: string
+  name: string
+  phone: string
+  username: string
+  website: string
+  company: Company
+}
+
+export interface Company {
+  bs: string
+  catchPhrase: string
+  name: string
+}
+
+export interface Address {
+  city: string
+  street: string
+  suite: string
+  zipcode: string
+  geo: Geo
+}
+
+export interface Geo {
+  lat: string
+  lng: string
+}
+
 function App() {
-  const [ users, setUsers ] = useState( [] )
-  const [ isUserHidden, setIsUserHidden ] = useState( false )
-  const [ isEmailHidden, setIsEmailHidden ] = useState( false )
-  const [ isCompanyNameHidden, setIsCompanyNameHidden ] = useState( false )
-  const [ isUsernameHidden, setIsUsernameHidden ] = useState( false )
+  const [ users, setUsers ] = useState<Array<User>>( [] )
+  const [ isUserHidden, setIsUserHidden ] = useState<boolean>( false )
+  const [ isEmailHidden, setIsEmailHidden ] = useState<boolean>( false )
+  const [ isCompanyNameHidden, setIsCompanyNameHidden ] = useState<boolean>( false )
+  const [ isUsernameHidden, setIsUsernameHidden ] = useState<boolean>( false )
 
   useEffect( () => {
     fetch( 'https://jsonplaceholder.typicode.com/users' )
       .then( ( response ) => response.json() )
-      .then( ( json ) => setUsers( json ) );
+      .then( ( json: Array<User> ) => setUsers( json ) );
   }, [] )
 
-  function Menu() {
+  console.log( users )
+
+  const Menu = () => {
     return (
       <Dropdown>
         <Dropdown.Toggle as={ BsThreeDotsVertical } id="dropdown-custom-components" style={ {
