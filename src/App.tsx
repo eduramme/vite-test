@@ -104,34 +104,36 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          { !!users ? users?.map( ( user: any ): any => {
-            return ( <tr>
-              { !isUserHidden && <td>{ user?.name }</td> }
-              { !isEmailHidden && <td>{ user?.email }</td> }
-              { !isCompanyNameHidden && <td>{ user?.company.name }</td> }
-              { !isUsernameHidden && <td >
-                { user?.username }
-              </td> }
-              <td style={ { flexDirection: 'row', display: 'flex', justifyContent: "flex-start" } }>
-                <div style={ { marginLeft: '30px' } }>
-                  <BsFillPencilFill color='blue' />
-                </div>
-                <div style={ { marginLeft: '50px' } }>
-                  <BsXLg color='red' />
-                </div>
-              </td>
-            </tr> )
-          } ) :
-            <tr>
-              <td colSpan={ 5 } style={ { textAlign: 'center' } }>
-                <Spinner animation="border" role="status">
-                  <span className="visually-hidden">Loading...</span>
-                </Spinner>
-              </td>
-            </tr>
+          {
+            !!users ? users?.map( ( user: any ): any => {
+              return (
+                <tr>
+                  { !isUserHidden && <td>{ user?.name }</td> }
+                  { !isEmailHidden && <td>{ user?.email }</td> }
+                  { !isCompanyNameHidden && <td>{ user?.company.name }</td> }
+                  { !isUsernameHidden && <td >
+                    { user?.username }
+                  </td> }
+                  <td style={ { flexDirection: 'row', display: 'flex', justifyContent: "flex-start" } }>
+                    <div style={ { marginLeft: '30px' } }>
+                      <BsFillPencilFill color='blue' />
+                    </div>
+                    <div style={ { marginLeft: '50px' } }>
+                      <BsXLg color='red' />
+                    </div>
+                  </td>
+                </tr>
+              )
+            } ) :
+              <tr>
+                <td colSpan={ 5 } style={ { textAlign: 'center' } }>
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </td>
+              </tr>
           }
         </tbody>
-
       </Table>
     </div >
   )
